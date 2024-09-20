@@ -493,10 +493,7 @@ def encode_big_file(input_filename, output_filename, compress_method, compress_l
                 msb_block_img = np.stack((band2_block_msb, band1_block_msb, band0_block_msb), axis=-1)
 
                 msb_compressed_file, msb_compressed_length = compress_dlpr_lossy(nll_model, msb_block_img.reshape((band_block_info[0][1][i][0], band_block_info[0][1][i][1], 3)), COT, compress_level)
-                compressed_blocks_info.append((msb_compressed_file, msb_compressed_length, band0_block_shift, band0_block_min, band1_block_shift, band1_block_min, band2_block_shift, band2_block_min))
-            
-            else:
-                print('compress method error at 1 !')            
+                compressed_blocks_info.append((msb_compressed_file, msb_compressed_length, band0_block_shift, band0_block_min, band1_block_shift, band1_block_min, band2_block_shift, band2_block_min))        
             
             for j in range(3, num_channel):
                 distance = compress_level * 0.015 + 0.045 
@@ -584,9 +581,7 @@ def decode_big_file(compressed_filename, compress_method, block_size):
                 band2_block_lsb_recon = np.zeros_like(band2_block_msb_recon)
                 band0_block_recon = merge_uint8_to_uint16(band0_block_msb_recon, band0_block_lsb_recon, band0_block_max_shift, band0_block_min)
                 band1_block_recon = merge_uint8_to_uint16(band1_block_msb_recon, band1_block_lsb_recon, band1_block_max_shift, band1_block_min)
-                band2_block_recon = merge_uint8_to_uint16(band2_block_msb_recon, band2_block_lsb_recon, band2_block_max_shift, band2_block_min)  
-            else:
-                print('compress method error at 3 !')    
+                band2_block_recon = merge_uint8_to_uint16(band2_block_msb_recon, band2_block_lsb_recon, band2_block_max_shift, band2_block_min)   
 
             band_block_recon_lst.append(band0_block_recon)
             band_block_recon_lst.append(band1_block_recon)
@@ -597,10 +592,7 @@ def decode_big_file(compressed_filename, compress_method, block_size):
                 band_block_recon_lst.append(band_block_recon)   
 
             block_img_recon = np.stack(band_block_recon_lst, axis=-1)
-            img_recon[y:y+block_height, x:x+block_width] = block_img_recon[:block_height, :block_width]
-    
-        else:
-            print('compress method error at 4 !')    
+            img_recon[y:y+block_height, x:x+block_width] = block_img_recon[:block_height, :block_width] 
 
     return img_recon
 
