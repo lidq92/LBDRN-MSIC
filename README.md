@@ -1,5 +1,5 @@
 # LBDRN-MSIC
-Lightweight Bit-Depth Recovery Network for Gaofen Satellite Multispectral Image Compression
+Wei Zhang, Dingquan Li, Haihua Zhang, Pengpeng Yu and Wen Gao, "Lightweight Bit-Depth Recovery Network for Gaofen Satellite Multispectral Image Compression," in IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, vol. 17, pp. 18635-18651, 2024, doi: 10.1109/JSTARS.2024.3476990.
 
 ## Requirements
 See `requirements.txt`
